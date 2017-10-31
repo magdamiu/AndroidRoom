@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Android Room</string>
+    <string name="display_data">Display data</string>
+</resources>
