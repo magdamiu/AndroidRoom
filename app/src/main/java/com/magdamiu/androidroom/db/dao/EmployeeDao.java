@@ -23,14 +23,14 @@ public interface EmployeeDao {
     LiveData<List<Employee>> getAllEmployees();
 
     @Insert
-    void insertCompany(Employee employee);
+    void insertEmployee(Employee employee);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Employee> employees);
 
     @Update
-    void updateCompany(Employee employee);
+    void updateEmployee(Employee employee);
 
     @Delete
-    void deleteCompany(Employee employee);
+    void deleteEmployee(Employee employee);
 }

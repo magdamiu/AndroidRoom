@@ -9,6 +9,7 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import com.magdamiu.androidroom.db.entity.Company;
+import com.magdamiu.androidroom.model.CompanyAndAllDepartments;
 
 import java.util.List;
 
@@ -27,9 +28,18 @@ public interface CompanyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Company> companies);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(Company... companies);
+
     @Update
     void updateCompany(Company company);
 
+    @Update
+    void updateCompanies(Company... company);
+
     @Delete
     void deleteCompany(Company company);
+
+    @Delete
+    void deleteCompanies(Company... company);
 }

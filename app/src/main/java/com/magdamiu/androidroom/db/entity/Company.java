@@ -1,6 +1,7 @@
 package com.magdamiu.androidroom.db.entity;
 
 import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
@@ -8,6 +9,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.graphics.Bitmap;
 
 import com.magdamiu.androidroom.db.converter.DateConverter;
+import com.magdamiu.androidroom.model.Location;
 
 import java.util.Date;
 
@@ -18,7 +20,7 @@ import java.util.Date;
 @Entity(tableName = "Company")
 public class Company {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "id")
     private int companyId;
 
@@ -28,6 +30,12 @@ public class Company {
     @ColumnInfo(name = "date_updated")
     @TypeConverters(DateConverter.class)
     private Date itemUpdatedDate;
+
+    @Embedded
+    private Location location;
+
+    @Embedded(prefix = "hq_")
+    private Location headLocation;
 
     @Ignore
     Bitmap picture;
@@ -64,12 +72,31 @@ public class Company {
         this.itemUpdatedDate = itemUpdatedDate;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Location getHeadLocation() {
+        return headLocation;
+    }
+
+    public void setHeadLocation(Location headLocation) {
+        this.headLocation = headLocation;
+    }
+
     @Override
     public String toString() {
         return "Company{" +
                 "companyId=" + companyId +
                 ", name='" + name + '\'' +
                 ", itemUpdatedDate=" + itemUpdatedDate +
+                ", location=" + location +
+                ", headLocation=" + headLocation +
+                ", picture=" + picture +
                 '}';
     }
 }

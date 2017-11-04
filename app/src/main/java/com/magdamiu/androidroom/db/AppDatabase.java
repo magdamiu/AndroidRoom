@@ -4,17 +4,19 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverters;
 import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 import android.support.annotation.VisibleForTesting;
 
 import com.magdamiu.androidroom.db.dao.CompanyDao;
+import com.magdamiu.androidroom.db.dao.CompanyDepartmentsDao;
+import com.magdamiu.androidroom.db.dao.DepartmentDao;
 import com.magdamiu.androidroom.db.dao.EmployeeDao;
 import com.magdamiu.androidroom.db.entity.Company;
+import com.magdamiu.androidroom.db.entity.Department;
 import com.magdamiu.androidroom.db.entity.Employee;
 
-@Database(entities = {Company.class, Employee.class}, version = 1)
+@Database(entities = {Company.class, Employee.class, Department.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     static final String DATABASE_NAME = "company-db";
@@ -23,6 +25,8 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract CompanyDao companyDao();
     public abstract EmployeeDao employeeDao();
+    public abstract CompanyDepartmentsDao companyDepartmentsDao();
+    public abstract DepartmentDao departmentDao();
 
     public static AppDatabase getAppDatabase(Context context) {
         if (INSTANCE == null) {
@@ -45,7 +49,7 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE Company "
-                    + " ADD COLUMN refNo TEXT");
+                    + " ADD COLUMN ref_no TEXT");
         }
     };
 

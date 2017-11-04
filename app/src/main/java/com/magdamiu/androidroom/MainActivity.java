@@ -13,10 +13,12 @@ import android.widget.TextView;
 import com.magdamiu.androidroom.db.AppDatabase;
 import com.magdamiu.androidroom.db.DatabaseCreator;
 import com.magdamiu.androidroom.db.entity.Company;
+import com.magdamiu.androidroom.db.entity.Department;
+import com.magdamiu.androidroom.model.CompanyAndAllDepartments;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getName();
 
@@ -49,7 +51,18 @@ public class MainActivity extends AppCompatActivity  {
                 companiesLiveData.observe(this, new Observer<List<Company>>() {
                     @Override
                     public void onChanged(@Nullable List<Company> countries) {
-                        dataTextView.setText(countries.toString());
+                        dataTextView.setText(countries.toString() + "\n\n\n");
+                    }
+                });
+            }
+
+            final LiveData<CompanyAndAllDepartments> companyAndAllDepartmentsLiveData = databaseCreator.getDatabase().companyDepartmentsDao().loadCompanyAllDepartments(2);
+
+            if (companyAndAllDepartmentsLiveData != null) {
+                companyAndAllDepartmentsLiveData.observe(this, new Observer<CompanyAndAllDepartments>() {
+                    @Override
+                    public void onChanged(@Nullable CompanyAndAllDepartments companyAndAllDepartments) {
+                        dataTextView.append(companyAndAllDepartmentsLiveData.getValue().getCompany().toString() + " " + companyAndAllDepartmentsLiveData.getValue().getDepartments().toString());
                     }
                 });
             }
