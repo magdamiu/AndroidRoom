@@ -62,6 +62,7 @@ public class DatabaseInitializer {
             db.companyDao().insertAll(companies);
             db.employeeDao().insertAll(employees);
             db.departmentDao().insertAll(departments);
+            db.departmentDao().insertAndDeleteInTransaction(departments.get(0), departments.get(1));
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();

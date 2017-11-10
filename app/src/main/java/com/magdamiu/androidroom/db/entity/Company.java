@@ -16,7 +16,6 @@ import java.util.Date;
 /**
  * Created by magdamiu on 01/11/17.
  */
-
 @Entity(tableName = "Company")
 public class Company {
 
@@ -56,14 +55,6 @@ public class Company {
         this.name = name;
     }
 
-    public Bitmap getPicture() {
-        return picture;
-    }
-
-    public void setPicture(Bitmap picture) {
-        this.picture = picture;
-    }
-
     public Date getItemUpdatedDate() {
         return itemUpdatedDate;
     }
@@ -88,6 +79,24 @@ public class Company {
         this.headLocation = headLocation;
     }
 
+    public Bitmap getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Bitmap picture) {
+        this.picture = picture;
+    }
+
+    public Company() {
+    }
+
+    public Company(String name, Date itemUpdatedDate, Location location, Location headLocation) {
+        this.name = name;
+        this.itemUpdatedDate = itemUpdatedDate;
+        this.location = location;
+        this.headLocation = headLocation;
+    }
+
     @Override
     public String toString() {
         return "Company{" +
@@ -98,5 +107,29 @@ public class Company {
                 ", headLocation=" + headLocation +
                 ", picture=" + picture +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Company company = (Company) o;
+
+        if (name != null ? !name.equals(company.name) : company.name != null) return false;
+        if (itemUpdatedDate != null ? !itemUpdatedDate.equals(company.itemUpdatedDate) : company.itemUpdatedDate != null)
+            return false;
+        if (location != null ? !location.equals(company.location) : company.location != null)
+            return false;
+        return headLocation != null ? headLocation.equals(company.headLocation) : company.headLocation == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (itemUpdatedDate != null ? itemUpdatedDate.hashCode() : 0);
+        result = 31 * result + (location != null ? location.hashCode() : 0);
+        result = 31 * result + (headLocation != null ? headLocation.hashCode() : 0);
+        return result;
     }
 }

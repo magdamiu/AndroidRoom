@@ -15,10 +15,10 @@ import java.util.List;
 public class CompanyAndAllDepartments {
 
     @Embedded
-    public Company company;
+    Company company;
 
     @Relation(parentColumn = "id", entityColumn = "company_id", entity = Department.class)
-    public List<Department> departments;
+    List<Department> departments;
 
     public Company getCompany() {
         return company;

@@ -25,6 +25,9 @@ public interface CompanyDao {
     @Insert
     void insertCompany(Company company);
 
+    @Query("SELECT * FROM Company WHERE name = :companyName")
+    List<Company> getCompanies(String companyName);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Company> companies);
 

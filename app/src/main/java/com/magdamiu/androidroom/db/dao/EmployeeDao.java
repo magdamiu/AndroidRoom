@@ -7,6 +7,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
+import android.provider.BaseColumns;
 
 import com.magdamiu.androidroom.db.entity.Company;
 import com.magdamiu.androidroom.db.entity.Employee;
@@ -34,3 +35,4 @@ public interface EmployeeDao {
     @Delete
     void deleteEmployee(Employee employee);
 }
+

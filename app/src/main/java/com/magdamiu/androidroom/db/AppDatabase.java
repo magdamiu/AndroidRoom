@@ -15,8 +15,10 @@ import com.magdamiu.androidroom.db.dao.EmployeeDao;
 import com.magdamiu.androidroom.db.entity.Company;
 import com.magdamiu.androidroom.db.entity.Department;
 import com.magdamiu.androidroom.db.entity.Employee;
+import com.magdamiu.androidroom.db.entity.Google;
+import com.magdamiu.androidroom.model.CompanyAndAllDepartments;
 
-@Database(entities = {Company.class, Employee.class, Department.class}, version = 1)
+@Database(entities = {Company.class, Employee.class, Department.class, Google.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     static final String DATABASE_NAME = "company-db";

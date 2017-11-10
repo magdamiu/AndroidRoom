@@ -1,9 +1,12 @@
 package com.magdamiu.androidroom.model;
 
+import android.arch.persistence.room.Entity;
+
+import com.magdamiu.androidroom.db.entity.Employee;
+
 /**
  * Created by magdamiu on 01/11/17.
  */
-
 public class Location {
 
     private double latitude;
@@ -24,6 +27,7 @@ public class Location {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+
 
     @Override
     public String toString() {
