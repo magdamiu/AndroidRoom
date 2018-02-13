@@ -55,7 +55,7 @@ public class DatabaseInitializer {
 
     }
 
-    private static void insertData(AppDatabase db, List<Company> companies, List<Employee>
+    private static void insertData(final AppDatabase db, List<Company> companies, List<Employee>
             employees, List<Department> departments) {
         db.beginTransaction();
         try {

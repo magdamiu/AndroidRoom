@@ -6,6 +6,7 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.RawQuery;
 import android.arch.persistence.room.Update;
 import android.provider.BaseColumns;
 
@@ -22,6 +23,9 @@ import java.util.List;
 public interface EmployeeDao {
     @Query("SELECT * FROM Employee")
     LiveData<List<Employee>> getAllEmployees();
+
+    @RawQuery
+    LiveData<List<Employee>> getAllEmployeesWithLimit(String query);
 
     @Insert
     void insertEmployee(Employee employee);

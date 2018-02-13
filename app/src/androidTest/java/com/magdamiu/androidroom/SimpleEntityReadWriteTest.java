@@ -47,7 +47,7 @@ public class SimpleEntityReadWriteTest {
         mCompanyDao.insertCompany(company);
 
         // Get the company
-        List<Company> byName = mCompanyDao.getCompanies("DevTalksJr");
+        List<Company> byName = mCompanyDao.getCompanies("DevTalksJr AND id =1");
 
         // Check if the two objects are equals
         assertEquals("Should be equal", byName.get(0), company);

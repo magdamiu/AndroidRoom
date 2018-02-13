@@ -45,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnSaveData_onClick(View view) {
         if (databaseCreator.isDatabaseCreated().getValue().equals(true)) {
-            final LiveData<List<Company>> companiesLiveData = databaseCreator.getDatabase().companyDao().getAllCompanies();
+            final LiveData<List<Company>> companiesLiveData = databaseCreator.getDatabase().companyDao().getAllCompaniesOrdered();
+            final LiveData<List<Company>> companiesByNameLiveData = databaseCreator.getDatabase().companyDao().getCompanies("Apple");
+
 
             if (companiesLiveData != null) {
                 companiesLiveData.observe(this, new Observer<List<Company>>() {
@@ -55,6 +57,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
+            if (companiesByNameLiveData != null) {
+                companiesByNameLiveData.observe(this, new Observer<List<Company>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Company> countries) {
+                        dataTextView.append("selected= " + countries.toString() + "\n\n\n");
+                    }
+                });
+            }
+
 
             final LiveData<CompanyAndAllDepartments> companyAndAllDepartmentsLiveData = databaseCreator.getDatabase().companyDepartmentsDao().loadCompanyAllDepartments(2);
 

@@ -22,11 +22,14 @@ public interface CompanyDao {
     @Query("SELECT * FROM Company")
     LiveData<List<Company>> getAllCompanies();
 
+    @Query("SELECT * FROM Company ORDER BY name")
+    LiveData<List<Company>> getAllCompaniesOrdered();
+
     @Insert
     void insertCompany(Company company);
 
-    @Query("SELECT * FROM Company WHERE name = :companyName")
-    List<Company> getCompanies(String companyName);
+    @Query("SELECT * FROM Company WHERE name LIKE :companyName")
+    LiveData<List<Company>> getCompanies(String companyName);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Company> companies);

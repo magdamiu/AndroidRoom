@@ -20,6 +20,7 @@ import java.util.List;
 @Dao
 public interface CompanyDepartmentsDao {
 
+    @Transaction
     @Query("SELECT * FROM Company WHERE id = :companyId")
     LiveData<CompanyAndAllDepartments> loadCompanyAllDepartments(long companyId);
 }

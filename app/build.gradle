@@ -4,11 +4,25 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.magdamiu.androidroom"
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        /**
+        *
+         * You can set annotation processor argument (room.schemaLocation) to tell Room to export
+         * the schema into a folder. Even though it is not mandatory, it is a good practice to have
+         * version history in your codebase and you should commit that file into your version
+         * control system (but don't ship it with your app!).
+        * */
+        //export schema
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -36,13 +50,14 @@ dependencies {
     annotationProcessor 'android.arch.persistence.room:compiler:' + rootProject.archRoomVersion;
 
     // architecture components
-    compile 'android.arch.lifecycle:extensions:' + rootProject.archRoomVersion;
-    annotationProcessor 'android.arch.lifecycle:compiler:' + rootProject.archRoomVersion;
+    compile 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion;
+    annotationProcessor 'android.arch.lifecycle:compiler:' + rootProject.archLifecycleVersion;
 
     compile 'com.android.support:design:26.1.0'
 
     // required if you want to use Mockito for unit tests
     testCompile 'org.mockito:mockito-core:2.7.22'
+
     // required if you want to use Mockito for Android tests
     androidTestCompile 'org.mockito:mockito-android:2.7.22'
 }

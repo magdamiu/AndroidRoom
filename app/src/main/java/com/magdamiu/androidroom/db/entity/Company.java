@@ -90,6 +90,7 @@ public class Company {
     public Company() {
     }
 
+    @Ignore
     public Company(String name, Date itemUpdatedDate, Location location, Location headLocation) {
         this.name = name;
         this.itemUpdatedDate = itemUpdatedDate;

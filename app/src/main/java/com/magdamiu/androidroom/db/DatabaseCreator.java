@@ -9,6 +9,11 @@ import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.magdamiu.androidroom.db.entity.Company;
+import com.magdamiu.androidroom.db.entity.Department;
+import com.magdamiu.androidroom.db.entity.Employee;
+
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.magdamiu.androidroom.db.AppDatabase.DATABASE_NAME;
@@ -107,4 +112,20 @@ public class DatabaseCreator {
         } catch (InterruptedException ignored) {
         }
     }
+
+    private void insertData(AppDatabase db, List<Company> companies, List<Employee>
+            employees, List<Department> departments) {
+        db.beginTransaction();
+        try {
+            db.companyDao().insertAll(companies);
+            db.employeeDao().insertAll(employees);
+            db.departmentDao().insertAll(departments);
+            db.departmentDao().insertAndDeleteInTransaction(departments.get(0), departments.get(1));
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+    }
+
+
 }
