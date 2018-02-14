@@ -83,8 +83,7 @@ public class DatabaseCreator {
                 context.deleteDatabase(DATABASE_NAME);
 
                 // Build the database!
-                AppDatabase db = Room.databaseBuilder(context.getApplicationContext(),
-                        AppDatabase.class, DATABASE_NAME).build();
+                AppDatabase db = AppDatabase.getAppDatabase(context);
 
                 // Add a delay to simulate a long-running operation
                 addDelay();
@@ -113,19 +112,7 @@ public class DatabaseCreator {
         }
     }
 
-    private void insertData(AppDatabase db, List<Company> companies, List<Employee>
-            employees, List<Department> departments) {
-        db.beginTransaction();
-        try {
-            db.companyDao().insertAll(companies);
-            db.employeeDao().insertAll(employees);
-            db.departmentDao().insertAll(departments);
-            db.departmentDao().insertAndDeleteInTransaction(departments.get(0), departments.get(1));
-            db.setTransactionSuccessful();
-        } finally {
-            db.endTransaction();
-        }
-    }
+
 
 
 }

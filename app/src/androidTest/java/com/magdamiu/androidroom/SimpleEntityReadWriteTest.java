@@ -1,5 +1,6 @@
 package com.magdamiu.androidroom;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -47,9 +48,9 @@ public class SimpleEntityReadWriteTest {
         mCompanyDao.insertCompany(company);
 
         // Get the company
-        List<Company> byName = mCompanyDao.getCompanies("DevTalksJr AND id =1");
+        LiveData<List<Company>> byName = mCompanyDao.getCompanies("DevTalksJr AND id =1");
 
         // Check if the two objects are equals
-        assertEquals("Should be equal", byName.get(0), company);
+        assertEquals("Should be equal", byName.getValue().get(0), company);
     }
 }
