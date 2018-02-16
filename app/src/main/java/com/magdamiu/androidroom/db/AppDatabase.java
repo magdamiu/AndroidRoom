@@ -22,7 +22,7 @@ import com.magdamiu.androidroom.db.entity.Employee;
 import com.magdamiu.androidroom.db.entity.Google;
 import com.magdamiu.androidroom.model.CompanyAndAllDepartments;
 
-@Database(entities = {Company.class, Employee.class, Department.class, Google.class}, version = 1)
+@Database(entities = {Company.class, Employee.class, Department.class, Google.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
     static final String DATABASE_NAME = "company-db";
@@ -39,6 +39,7 @@ public abstract class AppDatabase extends RoomDatabase {
             INSTANCE =
                     Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
                             //.addMigrations(MIGRATION_1_2)
+                            //.fallbackToDestructiveMigration()
                             .build();
         }
         return INSTANCE;

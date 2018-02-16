@@ -25,7 +25,7 @@ public interface EmployeeDao {
     LiveData<List<Employee>> getAllEmployees();
 
     @RawQuery
-    LiveData<List<Employee>> getAllEmployeesWithLimit(String query);
+    List<Employee> getAllEmployeesWithLimit(String query);
 
     @Insert
     void insertEmployee(Employee employee);

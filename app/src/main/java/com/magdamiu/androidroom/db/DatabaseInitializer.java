@@ -23,7 +23,7 @@ public class DatabaseInitializer {
 
         generateData(companies, employees, departments);
 
-        insertData(db, companies, employees, departments);
+        //insertData(db, companies, employees, departments);
     }
 
     private static void generateData(List<Company> companies, List<Employee> cities, List<Department> departments) {

@@ -44,11 +44,11 @@ public class SimpleEntityReadWriteTest {
     public void writeCompanyAndReadInList() throws Exception {
 
         // Insert the company
-        Company company = TestUtil.createCompany("DevTalksJr");
+        Company company = TestUtil.createCompany("MobOS2018");
         mCompanyDao.insertCompany(company);
 
         // Get the company
-        LiveData<List<Company>> byName = mCompanyDao.getCompanies("DevTalksJr AND id =1");
+        LiveData<List<Company>> byName = mCompanyDao.getCompanies("MobOS2018 AND id =1");
 
         // Check if the two objects are equals
         assertEquals("Should be equal", byName.getValue().get(0), company);

@@ -36,6 +36,7 @@ public class Company {
     @Embedded(prefix = "hq_")
     private Location headLocation;
 
+
     @Ignore
     Bitmap picture;
 
