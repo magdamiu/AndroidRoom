@@ -14,3 +14,9 @@ This code includes examples about:
 - how to use the (observable) queries
 - not run database operations on the main thread
 - migration support
+
+Check these 4 tutorials:
+- Introduction: https://medium.com/@magdamiu/android-room-persistence-library-97ad0d25668e 
+- Components: https://medium.com/@magdamiu/android-room-components-5a7458b99191
+- Relations: https://medium.com/@magdamiu/android-room-persistence-library-relations-75bbe02e8522
+- Queries and Migration: https://medium.com/@magdamiu/android-room-persistence-library-queries-and-migration-support-a9f21d2dc9d8 
